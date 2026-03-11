@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just Eat Me – Authentic Italian Restaurant Jakarta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="/" class="nav-logo" id="logoBtn" onclick="handleLogoClick(event)">
+    Just <span>Eat Me</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#location">Lokasi</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-track" onclick="openTrackModal()">📦 Cek Pesanan</button>
+    <button class="nav-cart" onclick="toggleCart()">
+      🛒 Keranjang <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Admin hint -->
+<div class="admin-hint" id="adminHint">
+  <span>🔐 Klik logo <span id="clickCount">2</span>x lagi...</span>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text reveal">
+      <div class="hero-badges">
+        <span class="badge badge-red">🍕 Authentic Italian</span>
+        <span class="badge badge-green">✅ Halal</span>
+        <span class="badge badge-orange">📍 Jakarta Timur</span>
+      </div>
+      <h1 class="hero-title">Taste of <em>Italia</em><br>di Jakarta</h1>
+      <p class="hero-sub">Pizza autentik, pasta al dente, kopi espresso pilihan — semuanya hadir di <strong>Just Eat Me</strong>. Nikmati cita rasa Italia yang sesungguhnya tanpa harus terbang jauh.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary">🍽️ Lihat Menu</a>
+        <a href="#location" class="btn-secondary">📍 Temukan Kami</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="chef-wrapper">
+        <span class="floating-food f1">🍕</span>
+        <span class="floating-food f2">☕</span>
+        <span class="floating-food f3">🍝</span>
+        <svg class="chef-svg" viewBox="0 0 320 520" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="160" cy="508" rx="100" ry="12" fill="rgba(0,0,0,0.12)"/>
+          <rect x="108" y="400" width="44" height="80" rx="14" fill="#2D1A0E"/>
+          <rect x="162" y="400" width="44" height="80" rx="14" fill="#2D1A0E"/>
+          <ellipse cx="130" cy="478" rx="30" ry="13" fill="#1A0A00"/>
+          <ellipse cx="184" cy="478" rx="30" ry="13" fill="#1A0A00"/>
+          <ellipse cx="118" cy="476" rx="14" ry="9" fill="#3D1500" opacity="0.4"/>
+          <ellipse cx="172" cy="476" rx="14" ry="9" fill="#3D1500" opacity="0.4"/>
+          <path d="M72 215 Q55 235 50 310 L50 410 Q50 432 75 432 L245 432 Q270 432 270 410 L270 310 Q265 235 248 215 Z" fill="#F8F4F0"/>
+          <path d="M72 215 Q55 235 50 310 L50 410 Q50 432 75 432 L130 432 L130 215 Z" fill="#EDE9E5" opacity="0.5"/>
+          <path d="M105 230 L105 415 Q105 428 120 428 L200 428 Q215 428 215 415 L215 230 Z" fill="#E8341A" opacity="0.9"/>
+          <rect x="130" y="330" width="60" height="45" rx="8" fill="#C82010" opacity="0.6"/>
+          <rect x="140" y="340" width="12" height="18" rx="3" fill="#FBBF24" opacity="0.8"/>
+          <circle cx="148" cy="255" r="5" fill="#D0C8C0"/>
+          <circle cx="148" cy="280" r="5" fill="#D0C8C0"/>
+          <circle cx="148" cy="305" r="5" fill="#D0C8C0"/>
+          <path d="M130 215 L148 240 L166 215 Z" fill="#EDE9E5"/>
+          <path d="M72 230 Q30 255 22 320 Q18 345 40 355 Q60 360 75 318 Z" fill="#FDDCB5"/>
+          <circle cx="30" cy="360" r="22" fill="#FDDCB5"/>
+          <ellipse cx="16" cy="355" rx="34" ry="20" fill="#F5F0E8" transform="rotate(-18,16,355)"/>
+          <ellipse cx="14" cy="353" rx="28" ry="15" fill="#F97316" transform="rotate(-18,16,355)"/>
+          <circle cx="6"  cy="348" r="4" fill="#E8341A"/>
+          <circle cx="18" cy="354" r="3" fill="#22C55E"/>
+          <circle cx="4"  cy="358" r="3" fill="#E8341A"/>
+          <circle cx="14" cy="345" r="3" fill="#FBBF24"/>
+          <path d="M-10 362 Q4 370 28 366" stroke="#CD853F" stroke-width="5" fill="none" stroke-linecap="round" transform="rotate(-18,16,355)"/>
+          <path d="M248 230 Q290 255 298 320 Q302 345 280 355 Q260 360 245 318 Z" fill="#FDDCB5"/>
+          <circle cx="290" cy="360" r="22" fill="#FDDCB5"/>
+          <rect x="284" y="332" width="10" height="50" rx="5" fill="#8B6914" transform="rotate(15,289,360)"/>
+          <ellipse cx="305" cy="325" rx="18" ry="10" fill="#B8860B" transform="rotate(15,289,360)"/>
+          <ellipse cx="305" cy="325" rx="14" ry="7" fill="#DAA520" opacity="0.6" transform="rotate(15,289,360)"/>
+          <rect x="138" y="175" width="44" height="48" rx="12" fill="#FDDCB5"/>
+          <ellipse cx="160" cy="148" rx="60" ry="65" fill="#FDDCB5"/>
+          <ellipse cx="100" cy="152" rx="12" ry="16" fill="#FDDCB5"/>
+          <ellipse cx="102" cy="152" rx="8"  ry="12" fill="#F5C8A0"/>
+          <ellipse cx="220" cy="152" rx="12" ry="16" fill="#FDDCB5"/>
+          <ellipse cx="218" cy="152" rx="8"  ry="12" fill="#F5C8A0"/>
+          <ellipse cx="160" cy="160" rx="52" ry="55" fill="#F5C8A0" opacity="0.3"/>
+          <ellipse cx="135" cy="145" rx="12" ry="14" fill="white"/>
+          <ellipse cx="185" cy="145" rx="12" ry="14" fill="white"/>
+          <circle cx="137" cy="147" r="8" fill="#5C3317"/>
+          <circle cx="187" cy="147" r="8" fill="#5C3317"/>
+          <circle cx="138" cy="148" r="5" fill="#1A0A00"/>
+          <circle cx="188" cy="148" r="5" fill="#1A0A00"/>
+          <circle cx="140" cy="145" r="2.5" fill="white"/>
+          <circle cx="190" cy="145" r="2.5" fill="white"/>
+          <path d="M124 130 Q136 124 148 128" stroke="#5C3317" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M172 128 Q184 124 196 130" stroke="#5C3317" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M153 155 Q158 168 163 155" stroke="#C2854E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="152" cy="165" rx="5" ry="3" fill="#C2854E" opacity="0.4"/>
+          <ellipse cx="168" cy="165" rx="5" ry="3" fill="#C2854E" opacity="0.4"/>
+          <path d="M138 178 Q160 200 182 178" stroke="#C2643E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M143 183 Q160 196 177 183" fill="white" opacity="0.8"/>
+          <path d="M136 172 Q148 178 160 174 Q172 178 184 172" stroke="#7B4F2E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="118" cy="168" rx="14" ry="9" fill="#F4A0A0" opacity="0.35"/>
+          <ellipse cx="202" cy="168" rx="14" ry="9" fill="#F4A0A0" opacity="0.35"/>
+          <rect x="100" y="82" width="120" height="32" rx="10" fill="white" stroke="#E8E0D8" stroke-width="2"/>
+          <rect x="100" y="96" width="120" height="12" fill="#E8341A" opacity="0.25"/>
+          <path d="M108 84 Q100 40 112 10 Q128 -8 160 -5 Q192 -8 208 10 Q220 40 212 84 Z" fill="white" stroke="#E8E0D8" stroke-width="2"/>
+          <ellipse cx="118" cy="52" rx="22" ry="30" fill="white"/>
+          <ellipse cx="202" cy="52" rx="22" ry="30" fill="white"/>
+          <path d="M148 14 Q160 8 172 14" stroke="#F0ECE8" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.8"/>
+          <text x="248" y="125" font-size="22" opacity="0.85">✨</text>
+          <text x="34"  y="155" font-size="17" opacity="0.75">⭐</text>
+          <text x="255" y="195" font-size="15" opacity="0.7">💫</text>
+          <text x="40"  y="220" font-size="13" opacity="0.6">✨</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Pelanggan Puas</div></div>
+    <div class="stat-item"><div class="stat-number">40+</div><div class="stat-label">Menu Pilihan</div></div>
+    <div class="stat-item"><div class="stat-number">4.9⭐</div><div class="stat-label">Rating</div></div>
+    <div class="stat-item"><div class="stat-number">2025</div><div class="stat-label">Tahun Berdiri</div></div>
+    <div class="stat-item">
+      <button class="track-btn" onclick="openTrack()">🔍 Cek Status Pesanan</button>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-header reveal">
+    <span class="section-tag">🍴 Menu Kami</span>
+    <h2 class="section-title">Pilih <em>Favoritmu</em></h2>
+    <p class="section-sub">Semua dibuat segar setiap hari dengan bahan pilihan terbaik</p>
+  </div>
+  <div class="cat-tabs reveal">
+    <button class="cat-tab active" onclick="filterMenu('all')">🍽️ Semua</button>
+    <button class="cat-tab" onclick="filterMenu('pizza')">🍕 Pizza</button>
+    <button class="cat-tab" onclick="filterMenu('pasta')">🍝 Pasta</button>
+    <button class="cat-tab" onclick="filterMenu('coffee')">☕ Kopi</button>
+    <button class="cat-tab" onclick="filterMenu('mocktail')">🧃 Mocktail</button>
+    <button class="cat-tab" onclick="filterMenu('dessert')">🍮 Dessert</button>
+    <button class="cat-tab" onclick="filterMenu('snack')">🧀 Snack</button>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid reveal">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&h=400"
+        alt="Suasana restoran" class="about-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;width:100%;height:350px;border-radius:20px;background:linear-gradient(135deg,#3D1500,#7C2D12);flex-direction:column;align-items:center;justify-content:center">
+        <span style="font-size:5rem">🍽️</span>
+        <span style="color:#FBBF24;font-weight:800;font-size:1.2rem;margin-top:1rem">Just Eat Me Restaurant</span>
+      </div>
+      <div class="about-sticker"><span>🏆</span>Best Italian<br>in Jakarta</div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag" style="background:rgba(251,191,36,.2);color:#FBBF24">🍽️ Tentang Kami</span>
+      <h2 class="about-title" style="margin-top:.8rem">Passion untuk <em>Cita Rasa</em> Sejati</h2>
+      <p class="about-body">Just Eat Me hadir sejak 2025 dengan misi sederhana: membawa cita rasa Italia yang autentik ke Jakarta Timur. Kami percaya setiap gigitan harus memberikan kebahagiaan.</p>
+      <ul class="features-list">
+        <li class="feat-li"><div class="feat-icon">👨‍🍳</div><div class="feat-text"><strong>Chef Berpengalaman</strong><span>Tim chef kami terlatih dari resep Italia asli yang turun-temurun</span></div></li>
+        <li class="feat-li"><div class="feat-icon">🌿</div><div class="feat-text"><strong>Bahan Segar Setiap Hari</strong><span>Semua bahan dipilih segar setiap pagi dari supplier terpercaya</span></div></li>
+        <li class="feat-li"><div class="feat-icon">☕</div><div class="feat-text"><strong>Kopi Specialty Grade</strong><span>Biji kopi Arabica grade A yang di-roast sendiri untuk kualitas terjaga</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="section-header reveal">
+    <span class="section-tag">📍 Temukan Kami</span>
+    <h2 class="section-title">Lokasi <em>Kami</em></h2>
+    <p class="section-sub">Mudah dijangkau di Jakarta Timur</p>
+  </div>
+  <div class="location-grid reveal">
+    <div>
+      <h3 class="location-title">Just Eat Me Restaurant</h3>
+      <div class="info-item"><div class="info-icon">📍</div><div><strong>Alamat</strong><span>Jl. Mabes Setu, Jakarta Timur, DKI Jakarta 13880</span></div></div>
+      <div class="info-item"><div class="info-icon">🕐</div><div><strong>Jam Operasional</strong><span>Senin – Minggu: 10.00 – 22.00 WIB</span></div></div>
+      <div class="info-item"><div class="info-icon">📞</div><div><strong>Telepon / WhatsApp</strong><span>+62 812-3456-7890</span></div></div>
+      <div class="info-item"><div class="info-icon">🅿️</div><div><strong>Parkir</strong><span>Tersedia parkir mobil dan motor luas, gratis!</span></div></div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.155!2d106.9358!3d-6.3053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698!2sMarkas+Besar+TNI!5e0!3m2!1sid!2sid!4v1700000000"
+        allowfullscreen loading="lazy" title="Peta Just Eat Me"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Just <span>Eat Me</span></div>
+      <p class="footer-desc">Restoran Italia autentik di jantung Jakarta Timur.<br>Dibuat dengan cinta, disajikan dengan passion.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#menu">🍕 Pizza</a></li>
+        <li><a href="#menu">🍝 Pasta</a></li>
+        <li><a href="#menu">☕ Kopi</a></li>
+        <li><a href="#menu">🧃 Mocktail</a></li>
+        <li><a href="#menu">🍮 Dessert</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#about">Tentang Kami</a></li>
+        <li><a href="#location">Lokasi</a></li>
+        <li><span>📞 +62 812-3456-7890</span></li>
+        <li><span>✉️ hello@justeatme.id</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Just Eat Me Restaurant. All rights reserved.</p>
+    <p>🍕 Made with love in Jakarta Timur</p>
+  </div>
+</footer>
+
+<!-- ═══ MODAL: CEK STATUS PESANAN ═══ -->
+<div class="modal-overlay" id="trackModal">
+  <div class="modal track-modal">
+    <div class="track-header">
+      <div>
+        <h3>📦 Cek Status Pesanan</h3>
+        <p>Masukkan Order ID yang kamu terima</p>
+      </div>
+      <button class="close-track" onclick="closeTrackModal()">✕</button>
+    </div>
+
+    <!-- Input pencarian -->
+    <div class="track-input-wrap">
+      <input type="text" id="trackInput" placeholder="Contoh: JEM-123456"
+        oninput="this.value=this.value.toUpperCase()"
+        onkeydown="if(event.key==='Enter') searchOrder()">
+      <button class="track-search-btn" onclick="searchOrder()">Lacak</button>
+    </div>
+    <div id="trackError" class="track-error" style="display:none"></div>
+
+    <!-- Hasil -->
+    <div id="trackResult" style="display:none">
+      <!-- Info pesanan -->
+      <div class="track-order-info">
+        <div class="track-code" id="trCode"></div>
+        <div class="track-meta">
+          <span id="trName"></span>
+          <span id="trType"></span>
+          <span id="trTime"></span>
+        </div>
+        <div class="track-total" id="trTotal"></div>
+      </div>
+
+      <!-- Progress bar status -->
+      <div class="track-progress">
+        <div class="progress-step" id="ps-Baru">
+          <div class="ps-dot"></div>
+          <div class="ps-label">Baru</div>
+          <div class="ps-desc">Pesanan diterima</div>
+        </div>
+        <div class="progress-line" id="pl-1"></div>
+        <div class="progress-step" id="ps-Diproses">
+          <div class="ps-dot"></div>
+          <div class="ps-label">Diproses</div>
+          <div class="ps-desc">Sedang dibuat</div>
+        </div>
+        <div class="progress-line" id="pl-2"></div>
+        <div class="progress-step" id="ps-Siap">
+          <div class="ps-dot"></div>
+          <div class="ps-label">Siap</div>
+          <div class="ps-desc">Siap diambil</div>
+        </div>
+        <div class="progress-line" id="pl-3"></div>
+        <div class="progress-step" id="ps-Selesai">
+          <div class="ps-dot"></div>
+          <div class="ps-label">Selesai</div>
+          <div class="ps-desc">Selesai</div>
+        </div>
+      </div>
+
+      <!-- Status batal khusus -->
+      <div id="track-batal-box" class="track-batal-box" style="display:none">
+        ❌ Pesanan ini telah dibatalkan
+      </div>
+
+      <!-- Status saat ini badge -->
+      <div class="track-current-status">
+        Status saat ini: <span id="trStatusBadge" class="track-status-badge"></span>
+      </div>
+
+      <!-- Daftar item -->
+      <div class="track-items-title">Detail Pesanan:</div>
+      <div id="trItems" class="track-items-list"></div>
+
+      <!-- Auto refresh note -->
+      <p class="track-refresh-note">🔄 Status diperbarui otomatis setiap 15 detik</p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal admin-login-modal">
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div style="font-size:3rem;margin-bottom:.5rem">🔐</div>
+      <h3>Admin Login</h3>
+      <p>Masukkan password admin</p>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="adminPassword" placeholder="Masukkan password..."
+        onkeydown="if(event.key==='Enter') checkAdminLogin()">
+    </div>
+    <div id="adminError" style="color:#E8341A;font-size:.83rem;font-weight:700;margin-bottom:.8rem;display:none">❌ Password salah!</div>
+    <button class="submit-order" onclick="checkAdminLogin()">Masuk ke Admin Panel</button>
+    <button class="cancel-order" onclick="closeAdminModal()">Batal</button>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h3>🛒 Keranjang</h3>
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty"><div class="e-icon">🛒</div><p>Keranjang kamu kosong</p></div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">Rp 0</span></div>
+    <button class="checkout-btn" onclick="showCheckout()">🛍️ Pesan Sekarang</button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <h3>📋 Detail Pesanan</h3>
+    <p>Isi informasi di bawah untuk melanjutkan</p>
+    <div class="form-row">
+      <div class="form-group"><label>Nama Lengkap *</label><input type="text" id="custName" placeholder="John Doe"></div>
+      <div class="form-group"><label>No. HP / WA *</label><input type="tel" id="custPhone" placeholder="08xxxxxxxxxx"></div>
+    </div>
+    <div class="form-group">
+      <label>Tipe Pesanan *</label>
+      <select id="orderType">
+        <option value="dine-in">🪑 Dine In (Makan di Tempat)</option>
+        <option value="takeaway">🛍️ Takeaway (Bawa Pulang)</option>
+        <option value="delivery">🛵 Delivery (Antar ke Alamat)</option>
+      </select>
+    </div>
+    <div class="form-group" id="addressGroup" style="display:none">
+      <label>Alamat Pengiriman *</label>
+      <textarea id="custAddress" rows="2" placeholder="Jl. contoh No. 1, Kelurahan, Kecamatan, Kota"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Catatan Tambahan</label>
+      <textarea id="custNote" rows="2" placeholder="Contoh: tidak pedas, extra keju, dll."></textarea>
+    </div>
+    <button class="submit-order" onclick="submitOrder()">✅ Konfirmasi Pesanan</button>
+    <button class="cancel-order" onclick="closeModal()">Batal</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successOverlay">
+  <div class="modal" style="text-align:center">
+    <span class="success-icon">🎉</span>
+    <h3>Pesanan Masuk!</h3>
+    <p>Terima kasih! Pesanan kamu sedang diproses.</p>
+    <div class="order-id-box" id="orderCode">Order #JEM-000000</div>
+    <p style="margin-bottom:1rem">Kami akan menghubungi kamu dalam <strong>5–10 menit</strong>.</p>
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:1.5rem">Simpan Order ID di atas untuk mengecek status pesananmu kapan saja lewat tombol <strong>"Cek Pesanan"</strong> di navbar.</p>
+    <button class="ok-btn" onclick="closeSuccessAndTrack()">Cek Status Pesanan 📦</button>
+    <button class="cancel-order" style="margin-top:.5rem" onclick="closeSuccess()">Tutup</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════ TRACK ORDER MODAL ═══════════ -->
+<div class="modal-overlay" id="trackModal">
+  <div class="modal track-modal">
+    <button class="modal-close-x" onclick="closeTrack()">✕</button>
+    <div style="text-align:center;margin-bottom:1.8rem">
+      <div style="font-size:3rem;margin-bottom:.5rem">🔍</div>
+      <h3>Cek Status Pesanan</h3>
+      <p>Masukkan Order ID yang kamu terima setelah memesan</p>
+    </div>
+
+    <!-- Input -->
+    <div class="track-input-wrap">
+      <input type="text" id="trackInput" placeholder="Contoh: JEM-202350"
+        oninput="this.value=this.value.toUpperCase()"
+        onkeydown="if(event.key==='Enter') doTrack()">
+      <button class="track-search-btn" onclick="doTrack()">Cari</button>
+    </div>
+    <div id="trackError" class="track-error" style="display:none"></div>
+
+    <!-- Result -->
+    <div id="trackResult" style="display:none">
+      <!-- Header info -->
+      <div class="track-order-header">
+        <div>
+          <div class="track-order-id" id="trOrderId"></div>
+          <div class="track-order-meta" id="trOrderMeta"></div>
+        </div>
+        <div class="track-total" id="trTotal"></div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="track-progress">
+        <div class="track-step" id="step-Baru">
+          <div class="step-dot"></div>
+          <div class="step-label">Baru</div>
+        </div>
+        <div class="track-line" id="line-1"></div>
+        <div class="track-step" id="step-Diproses">
+          <div class="step-dot"></div>
+          <div class="step-label">Diproses</div>
+        </div>
+        <div class="track-line" id="line-2"></div>
+        <div class="track-step" id="step-Siap">
+          <div class="step-dot"></div>
+          <div class="step-label">Siap</div>
+        </div>
+        <div class="track-line" id="line-3"></div>
+        <div class="track-step" id="step-Selesai">
+          <div class="step-dot"></div>
+          <div class="step-label">Selesai</div>
+        </div>
+      </div>
+
+      <!-- Status badge -->
+      <div style="text-align:center;margin:1.2rem 0">
+        <span class="track-status-badge" id="trStatusBadge"></span>
+        <div class="track-status-msg" id="trStatusMsg"></div>
+      </div>
+
+      <!-- Items -->
+      <div class="track-items" id="trItems"></div>
+
+      <!-- Auto refresh info -->
+      <p style="text-align:center;font-size:.78rem;color:#B0956E;margin-top:1rem">
+        🔄 Status diperbarui otomatis. <a href="#" onclick="doTrack();return false" style="color:var(--red);font-weight:700">Refresh sekarang</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

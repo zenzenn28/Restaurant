@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel – Just Eat Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <h2>Just Eat Me</h2>
+    <p>🍕 Admin Dashboard</p>
+  </div>
+  <nav class="sb-nav">
+    <div class="nav-group">Main</div>
+    <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')"><span class="nav-icon">📊</span> Dashboard</div>
+    <div class="nav-item" data-page="orders" onclick="showPage('orders')"><span class="nav-icon">📋</span> Pesanan <span class="nav-badge" id="newBadge">0</span></div>
+    <div class="nav-group" style="margin-top:1rem">Laporan</div>
+    <div class="nav-item" data-page="analytics" onclick="showPage('analytics')"><span class="nav-icon">📈</span> Analitik</div>
+    <div class="nav-group" style="margin-top:1rem">Sistem</div>
+    <div class="nav-item" data-page="settings" onclick="showPage('settings')"><span class="nav-icon">⚙️</span> Pengaturan</div>
+  </nav>
+  <div class="sb-footer"><a href="/" class="back-link">← Kembali ke Website</a></div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <header class="topbar">
+    <h1 id="pageTitle">Dashboard</h1>
+    <div class="topbar-right">
+      <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+      <span class="refresh-time" id="lastRefresh"></span>
+      <div class="admin-avatar">A</div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD -->
+  <div class="page active" id="page-dashboard">
+    <div class="stats-row">
+      <div class="stat-card sc-red"><div class="stat-icon">📋</div><div class="stat-num" id="statTotal">0</div><div class="stat-label">Total Pesanan</div><div class="stat-sub" id="statNew">0 pesanan baru</div></div>
+      <div class="stat-card sc-orange"><div class="stat-icon">⏳</div><div class="stat-num" id="statProcess">0</div><div class="stat-label">Sedang Diproses</div><div class="stat-sub" id="statReady">0 siap</div></div>
+      <div class="stat-card sc-green"><div class="stat-icon">✅</div><div class="stat-num" id="statDone">0</div><div class="stat-label">Selesai</div><div class="stat-sub">Semua waktu</div></div>
+      <div class="stat-card sc-yellow"><div class="stat-icon">💰</div><div class="stat-num" id="statRevenue">Rp 0</div><div class="stat-label">Total Pendapatan</div><div class="stat-sub">Akumulasi</div></div>
+    </div>
+    <div class="section-head">
+      <h2>Pesanan Terbaru</h2>
+      <button class="action-btn btn-all" onclick="showPage('orders')">Lihat Semua →</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Order ID</th><th>Pelanggan</th><th>Tipe</th><th>Total</th><th>Status</th><th>Waktu</th><th>Aksi</th></tr></thead>
+        <tbody id="recentTbody"><tr><td colspan="7"><div class="empty-state"><div class="e-icon">📭</div><p>Belum ada pesanan</p></div></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ORDERS -->
+  <div class="page" id="page-orders">
+    <div class="section-head">
+      <h2>Semua Pesanan</h2>
+      <div style="display:flex;gap:.7rem;align-items:center">
+        <input class="search-input" id="searchInput" type="text" placeholder="🔍 Cari nama / order ID…" onkeyup="renderAll()">
+        <button class="action-btn btn-del" onclick="deleteAllOrders()" style="padding:.5rem 1rem;font-size:.8rem">🗑️ Hapus Semua</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterOrders('all',this)">Semua</button>
+      <button class="filter-btn" onclick="filterOrders('Baru',this)">🟡 Baru</button>
+      <button class="filter-btn" onclick="filterOrders('Diproses',this)">🔵 Diproses</button>
+      <button class="filter-btn" onclick="filterOrders('Siap',this)">🟢 Siap</button>
+      <button class="filter-btn" onclick="filterOrders('Selesai',this)">⚫ Selesai</button>
+      <button class="filter-btn" onclick="filterOrders('Batal',this)">🔴 Batal</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Order ID</th><th>Pelanggan</th><th>Menu</th><th>Tipe</th><th>Total</th><th>Status</th><th>Waktu</th><th>Aksi</th></tr></thead>
+        <tbody id="allTbody"><tr><td colspan="8"><div class="empty-state"><div class="e-icon">📭</div><p>Belum ada pesanan</p></div></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="page" id="page-analytics">
+    <div class="stats-row">
+      <div class="stat-card sc-red"><div class="stat-icon">📦</div><div class="stat-num" id="aTotal">0</div><div class="stat-label">Total Pesanan</div></div>
+      <div class="stat-card sc-orange"><div class="stat-icon">💰</div><div class="stat-num" id="aRevenue">Rp 0</div><div class="stat-label">Total Revenue</div></div>
+      <div class="stat-card sc-green"><div class="stat-icon">📊</div><div class="stat-num" id="aAvg">Rp 0</div><div class="stat-label">Rata-rata / Order</div></div>
+      <div class="stat-card sc-yellow"><div class="stat-icon">⭐</div><div class="stat-num" id="aBest" style="font-size:1.2rem">-</div><div class="stat-label">Menu Terlaris</div></div>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card"><h3>🍕 Menu Terlaris</h3><div class="bar-chart" id="menuChart"><p style="color:var(--muted)">Belum ada data</p></div></div>
+      <div class="chart-card">
+        <h3>📊 Tipe Pesanan</h3>
+        <div class="type-grid">
+          <div class="type-item" style="background:#EDE9FE"><div class="t-num" id="cDineIn">0</div><div class="t-label">🪑 Dine In</div></div>
+          <div class="type-item" style="background:#FFF7ED"><div class="t-num" id="cTakeaway">0</div><div class="t-label">🛍️ Takeaway</div></div>
+          <div class="type-item" style="background:#DCFCE7"><div class="t-num" id="cDelivery">0</div><div class="t-label">🛵 Delivery</div></div>
+          <div class="type-item" style="background:#FEF3C7"><div class="t-num" id="cDone">0</div><div class="t-label">✅ Selesai</div></div>
+        </div>
+      </div>
+      <div class="chart-card"><h3>📋 Status Pesanan</h3><div class="bar-chart" id="statusChart"><p style="color:var(--muted)">Belum ada data</p></div></div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="page" id="page-settings">
+    <div class="settings-grid">
+      <div class="settings-card">
+        <h3>🏪 Info Restoran</h3>
+        <div class="setting-row"><div><label>Nama</label><span class="s-sub">Just Eat Me</span></div></div>
+        <div class="setting-row"><div><label>Lokasi</label><span class="s-sub">Mabes Setu, Jakarta Timur</span></div></div>
+        <div class="setting-row"><div><label>WhatsApp</label><span class="s-sub">+62 812-3456-7890</span></div></div>
+        <div class="setting-row"><div><label>Jam Buka</label><span class="s-sub">10.00 – 22.00 WIB</span></div></div>
+      </div>
+      <div class="settings-card">
+        <h3>🔔 Auto Refresh</h3>
+        <div class="setting-row">
+          <div><label>Auto Refresh (12s)</label><span class="s-sub">Refresh data otomatis</span></div>
+          <button class="toggle on" id="arToggle" onclick="toggleAutoRefresh(this)"></button>
+        </div>
+        <div class="setting-row">
+          <div><label>Sound Alert</label><span class="s-sub">Suara saat pesanan baru</span></div>
+          <button class="toggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+      </div>
+      <div class="settings-card">
+        <h3>🗑️ Manajemen Data</h3>
+        <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:.6rem">
+          <label style="font-weight:800">Hapus Semua Pesanan</label>
+          <span class="s-sub">Tindakan ini tidak dapat dibatalkan</span>
+          <button class="action-btn btn-del" onclick="deleteAllOrders()" style="margin-top:.3rem;padding:.5rem 1.2rem">🗑️ Hapus Semua</button>
+        </div>
+      </div>
+      <div class="settings-card">
+        <h3>ℹ️ Sistem</h3>
+        <div class="setting-row"><div><label>Versi</label><span class="s-sub">v1.0.0</span></div></div>
+        <div class="setting-row"><div><label>Database</label><span class="s-sub">SQLite via better-sqlite3</span></div></div>
+        <div class="setting-row"><div><label>Server</label><span class="s-sub">Node.js + Express</span></div></div>
+        <div class="setting-row"><div><label>Status</label><span class="s-sub" style="color:var(--green);font-weight:700">● Online</span></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h3 id="mCode">Order #—</h3><p id="mTime"></p></div>
+      <button class="close-modal" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-row"><span class="dl">Pelanggan</span><span class="dv" id="mCust">—</span></div>
+      <div class="detail-row"><span class="dl">No. HP</span><span class="dv" id="mPhone">—</span></div>
+      <div class="detail-row"><span class="dl">Tipe</span><span class="dv" id="mType">—</span></div>
+      <div class="detail-row" id="mAddrRow" style="display:none"><span class="dl">Alamat</span><span class="dv" id="mAddr">—</span></div>
+      <div class="detail-row"><span class="dl">Catatan</span><span class="dv" id="mNote">—</span></div>
+      <div class="items-section"><h4>Detail Item</h4><div id="mItems"></div></div>
+      <div class="total-row"><span>Total</span><span id="mTotal">—</span></div>
+      <div class="status-ctrl">
+        <label>Update Status Pesanan</label>
+        <select id="statusSelect">
+          <option value="Baru">🟡 Baru</option>
+          <option value="Diproses">🔵 Sedang Diproses</option>
+          <option value="Siap">🟢 Siap Diambil/Dikirim</option>
+          <option value="Selesai">⚫ Selesai</option>
+          <option value="Batal">🔴 Dibatalkan</option>
+        </select>
+        <button class="update-btn" onclick="updateStatus()">✅ Update Status</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>
